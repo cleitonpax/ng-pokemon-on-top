@@ -1,14 +1,13 @@
-
-<div class="pokemon">
+<div class="card">
   <div class="content">
     <div class="back">
       <button mat-button routerLink="/list">
-        Back to list
+        <i class="fa fa-chevron-left"></i> Back to list
       </button>
     </div>
     <ng-container *ngIf="pokemon$ | async as pokemon; else loading">
-      <img mat-list-avatar [src]="pokemon.sprites.other!.dream_world.front_default" [alt]="pokemon.name">
       <h1>{{pokemon.name}}</h1>
+      <img mat-list-avatar [src]="pokemon.sprites.other!.dream_world.front_default" [alt]="pokemon.name">
       <p class="info">
         Base experience <span>{{pokemon.base_experience}}</span>
         Height <span>{{pokemon.height}}</span>
@@ -47,8 +46,8 @@
       </div>
     </ng-container>    
     <ng-template #loading>
-      <div id="loading">
-        Loading
+      <div class="loading">
+        <i class="fa fa-spinner fa-spin"></i>
       </div>
     </ng-template>
   </div>

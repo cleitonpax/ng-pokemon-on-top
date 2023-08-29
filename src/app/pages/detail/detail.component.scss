@@ -1,37 +1,45 @@
-.pokemon {
-  min-height: 83vh;
-  margin: 0 auto;
-  max-width: 50%;
-  text-align: center;
+@import 'src/styles.scss';
 
-  img {
-    height: 200px;
-  }
+:host {
+  display: flex;
+  justify-content: center;
 
-  h1 {
-    text-transform: capitalize;
-    margin-bottom: 16px;
-  }
+  .card {
+    min-height: 83vh;
 
-  .info {
-    span {
-      font-weight: bold;
-      padding-right: 16px;
+    img {
+      height: 200px;
+    }
+
+    h1 {
+      text-transform: capitalize;
+      margin-bottom: $space-md;
+    }
+
+    .info {
+      span {
+        font-weight: bold;
+        padding-right: $space-sm;
+      }
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .title {
+        font-weight: bold;
+        padding-right: 16px;
+      }
     }
   }
 
-  .stats {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .back {
+    margin-bottom: $space-lg;
 
-    .title {
-      font-weight: bold;
-      padding-right: 16px;
+    .fa {
+      margin-right: $space-sm;
     }
   }
-}
-
-.back {
-  margin-bottom: 20px;
 }

@@ -12,7 +12,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class DetailComponent {  
   
-  public pokemon$?: Observable<Pokemon>;
+  pokemon$?: Observable<Pokemon>;
 
   constructor(private route: ActivatedRoute, private api: PokemonService) {
     
@@ -30,7 +30,7 @@ export class DetailComponent {
     }
   }
 
-  public getPokemonAvatar(url: string): string {
+  getPokemonAvatar(url: string): string {
     return this.api.getPokemonAvatar(url);
   }
 }

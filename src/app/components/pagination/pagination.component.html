@@ -1,0 +1,32 @@
+<nav>
+  <ul class="pagination">    
+    <li class="page" [class.disabled]="currentPage === 1">
+      <button (click)="onPageChanged(1)">
+        <i class="fa fa-chevron-left"></i>
+        <i class="fa fa-chevron-left"></i>
+      </button>
+    </li>
+    <li class="page" [class.disabled]="currentPage === 1">
+      <button (click)="onPageChanged(currentPage - 1)">
+        <i class="fa fa-chevron-left"></i>
+      </button>
+    </li>
+    <li class="page" *ngFor="let page of getPages()" [class.active]="currentPage === page">
+      <button (click)="onPageChanged(page)">{{ page }}</button>
+    </li>
+    <li class="page" [class.disabled]="currentPage === totalPages">
+      <button (click)="onPageChanged(currentPage + 1)">
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </li>
+    <li class="page" [class.disabled]="currentPage === totalPages">
+      <button (click)="onPageChanged(totalPages)">
+        <i class="fa fa-chevron-right"></i>
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </li>
+  </ul>
+  <div class="total">
+    {{total}} Pokémons
+  </div>
+</nav>

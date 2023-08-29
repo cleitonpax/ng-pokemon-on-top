@@ -1,0 +1,54 @@
+@import 'src/styles.scss';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: $space-md;
+  margin-bottom: 0;
+  font-size: small;
+  padding-left: 0;
+
+  .page {
+    list-style: none;
+    margin-right: $space-xs;
+
+    &.disabled {
+      button {
+        color: $secondary-color;
+        pointer-events: none;
+      }
+    }
+
+    &.active {
+      button {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        color: $light-color;
+      }
+    }
+
+    button {
+      display: block;
+      padding: $space-xs $space-sm;
+      color: $primary-color;
+      background-color: $light-color;
+      border: 1px solid $light-color;
+      border-radius: $space-xs;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        color: $light-color;
+      }
+    }
+  }
+}
+
+.total {
+  display: flex;
+  justify-content: center;
+  font-size: small;
+  margin-top: $space-md;
+  color: $secondary-color;
+}

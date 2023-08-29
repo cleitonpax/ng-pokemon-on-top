@@ -1,40 +1,41 @@
-.card {
-  margin: 0 auto;
-  max-width: 50%;
-  text-align: center;
+@import 'src/styles.scss';
 
-  .content {
-    min-height: 72vh;
-  
-    .item {
-      height: 64px;
-      
+:host {
+  display: flex;
+  justify-content: center;
+
+  .card {
+    .content {
+      min-height: 70vh;
+
       a {
-        cursor: pointer;
-  
-        .wrapper {
-          display: flex;
-          align-items: center;
-  
-          .avatar {
-            width: 64px;
-  
-            img {
-              max-height: 40px;
-              vertical-align: middle;
-            }
+        height: 64px;
+        display: flex;
+        align-items: center;
+        border-radius: $space-xs;
+
+        .avatar {
+          width: 64px;
+
+          img {
+            max-height: 40px;
+            vertical-align: middle;
           }
-  
-          .name {
-            text-transform: capitalize;
-          }
+        }
+
+        .name {
+          text-transform: capitalize;
+        }
+
+        &:hover {
+          background-color: darken($light-color, 5%);
         }
       }
     }
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
+    
+    .pagination {
+      display: flex;
+      justify-content: center;
+    }
   }
 }

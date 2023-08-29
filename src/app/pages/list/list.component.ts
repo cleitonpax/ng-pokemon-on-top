@@ -9,24 +9,25 @@ import { PokemonService } from 'src/app/services/pokemon.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  public pokemonPayload$?: Observable<NamedAPIResourceList>;
-  public limit = 8;
-  public offset = 0;
+  pokemonPayload$?: Observable<NamedAPIResourceList>;
+  limit = 8;
+  page = 1;
 
   constructor(private api: PokemonService) {
     this.fetchPokemons();
   }
 
-  public getPokemonAvatar(url: string): string {
+  getPokemonAvatar(url: string): string {
     return this.api.getPokemonAvatar(url);
   }
 
-  public handlePageEvent(e: any) {
-    this.offset = e.pageIndex;
+  onPageChanged(page: number) {
+    this.page = page;
+    console.log('page', page);
     this.fetchPokemons();
   }
 
   private fetchPokemons() {
-    this.pokemonPayload$ = this.api.listPokemons(this.offset, this.limit);
+    this.pokemonPayload$ = this.api.listPokemons(this.page, this.limit);
   }
 }

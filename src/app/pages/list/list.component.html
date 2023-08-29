@@ -3,28 +3,29 @@
     <ng-container *ngIf="pokemonPayload$ | async as list; else loading">
       <div class="list">
         <ng-container *ngFor="let item of list.results">
-          <div class="item">
-            <a mat-list-item [href]="'detail/' + item.name">
-              <span class="wrapper">
-                <span class="avatar">
-                  <img mat-list-avatar [src]="getPokemonAvatar(item.url)" [alt]="item.name">
-                </span>
-                <span class="name">
-                  {{item.name}}
-                </span>
-              </span>
-            </a>
-          </div>
+          <a [href]="'detail/' + item.name">
+            <span class="avatar">
+              <img [src]="getPokemonAvatar(item.url)" [alt]="item.name">
+            </span>
+            <span class="name">
+              {{item.name}}
+            </span>
+          </a>
         </ng-container>
+      </div>
+      <div class="pagination">
+        <app-pagination 
+          [limit]="limit" 
+          [currentPage]="page" 
+          [total]="list.count" 
+          (pageChanged)="onPageChanged($event)">
+        </app-pagination>
       </div>
     </ng-container>
     <ng-template #loading>
-      <div id="loading">
-        Loading
+      <div class="loading">
+        <i class="fa fa-spinner fa-spin"></i>
       </div>
     </ng-template>
-  </div>
-  <div class="pagination">
-    
   </div>
 </div>
