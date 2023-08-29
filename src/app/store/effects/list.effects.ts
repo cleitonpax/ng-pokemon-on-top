@@ -12,7 +12,7 @@ export class ListEffects {
 
   loadList$ = createEffect(() => this.actions$.pipe(
     ofType(GET_LIST_ACTION),
-    mergeMap((action: GetListActionPayload) => this.api.listPokemons(action.page, action.limit)
+    mergeMap((action: GetListActionPayload) => this.api.listPokemonSpecies(action.page, action.limit)
       .pipe(
         map((payload: NamedAPIResourceList) => {
           return ({

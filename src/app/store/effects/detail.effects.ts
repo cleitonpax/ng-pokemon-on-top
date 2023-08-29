@@ -1,9 +1,9 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { GET_DETAIL_ACTION, GET_DETAIL_ACTION_ERROR, GET_DETAIL_ACTION_SUCCESS, GetDetailActionPayload } from '../actions/detail.actions';
+import { EvolutionChain, PokemonSpecies } from 'pokenode-ts';
+import { GET_DETAIL_ACTION, GET_DETAIL_ACTION_ERROR, GET_DETAIL_ACTION_SUCCESS, GET_EVOLUTION_ACTION_SUCCESS, GetDetailActionPayload } from '../actions/detail.actions';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { Pokemon } from 'pokenode-ts';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { of } from 'rxjs';
 
@@ -12,12 +12,12 @@ export class DetailEffects {
 
   loadDetail$ = createEffect(() => this.actions$.pipe(
     ofType(GET_DETAIL_ACTION),
-    mergeMap((action: GetDetailActionPayload) => this.api.getPokemonByName(action.name)
+    mergeMap((action: GetDetailActionPayload) => this.api.getPokemonSpecieByName(action.name)
       .pipe(
-        map((payload: Pokemon) => ({
+        map((payload: PokemonSpecies) => ({
           type: GET_DETAIL_ACTION_SUCCESS, payload: {
             ...payload,
-            loading: false,
+            loading: true,
             error: null
           }
         })),
@@ -28,8 +28,32 @@ export class DetailEffects {
           }
         }))
       ))
-  )
-  );
+  ));
+  
+  loadEvolution$ = createEffect(() => this.actions$.pipe(
+    ofType(GET_DETAIL_ACTION_SUCCESS),
+    mergeMap((action: any) => { 
+      const id = action.payload.evolution_chain.url.split('/').reverse()[1];
+      
+      return this.api.getEvolutionById(id)
+      .pipe(
+        map((payload: EvolutionChain) => ({
+          type: GET_EVOLUTION_ACTION_SUCCESS, payload: {
+            ...action.payload,
+            evolution: payload,
+            loading: false,
+            error: null
+          }
+        })),
+        catchError(({ message }) => of({
+          type: GET_DETAIL_ACTION_ERROR, payload: {
+            loading: false,
+            error: message
+          }
+        }))
+      )}
+      )
+  ));
 
   constructor(
     private actions$: Actions,

@@ -5,33 +5,34 @@
   justify-content: center;
 
   .card {
-    min-height: 83vh;
-
-    img {
-      height: 200px;
-    }
-
-    h1 {
-      text-transform: capitalize;
-      margin-bottom: $space-md;
-    }
+    min-height: 70vh;
 
     .info {
-      span {
-        font-weight: bold;
-        padding-right: $space-sm;
-      }
-    }
-
-    .stats {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: start;
 
-      .title {
-        font-weight: bold;
-        padding-right: 16px;
+      img {
+        height: 200px;
+        margin-right: $space-lg;
       }
+
+      .details {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+
+        h1 {
+          text-transform: capitalize;
+          margin: $space-md auto;
+        }
+
+        a {
+          font-size: small;
+          text-align: start;
+        }
+      }
+  
     }
   }
 

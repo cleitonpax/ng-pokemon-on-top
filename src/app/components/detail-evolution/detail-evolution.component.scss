@@ -1,0 +1,44 @@
+@import 'src/styles.scss';
+
+h3 {
+  border-top: 1px solid darken($light-color, 10%);
+  padding-top: $space-xl;
+  margin: $space-xl auto;
+}
+
+.evolution {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+
+  .chain {
+    border: 1px solid darken($light-color, 20%);
+    padding: $space-lg;
+    border-radius: $space-xs;
+
+    img {
+      height: 100px;
+    }
+
+    p {
+      text-transform: capitalize;
+      margin-bottom: 0;
+    }
+  }
+
+  .arrow {
+    padding: $space-xs;
+    color: darken($light-color, 30%);
+
+    .fa {
+      font-size: 2rem;
+      margin-bottom: $space-xs;
+    }
+
+    .level {
+      font-size: 0.75rem;
+      text-wrap: nowrap;
+    }
+  }
+}

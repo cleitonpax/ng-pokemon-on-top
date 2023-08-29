@@ -13,12 +13,9 @@ export class ListItemComponent {
 
   isImgLoaded = false;
 
-  constructor(
-    private api: PokemonService,
-    ) {
-  }
+  constructor(private api: PokemonService) {}
 
   getPokemonAvatar(url: string): string {
-    return this.api.getPokemonAvatar(url);
+    return this.api.getPokemonAvatarByUrl(url);
   }
 }

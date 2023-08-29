@@ -1,0 +1,20 @@
+<h3>Evolution Chain</h3>
+<div class="evolution">
+  <ng-container *ngIf="evolutionChain?.length; else noEvolution">
+    <ng-container *ngFor="let chain of evolutionChain; let first = first">
+      <div class="arrow" *ngIf="!first">
+        <i class="fa fa-arrow-right"></i>
+        <div class="level" *ngIf="chain.evolution_details[0]?.min_level">
+          Lvl {{chain.evolution_details[0].min_level}}
+        </div>
+      </div>
+      <a [href]="'detail/' + chain.species.name" class="chain" title="View Details">
+        <img [src]="getPokemonAvatar(chain.species.url)">
+        <p>{{chain.species.name}}</p>
+      </a>
+    </ng-container>
+  </ng-container>
+  <ng-template #noEvolution>
+    <p>There is no evolution chain for this pokemon.</p>
+  </ng-template>
+</div>

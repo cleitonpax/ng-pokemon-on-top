@@ -13,20 +13,20 @@ import { getDetailAction } from 'src/app/store/actions/detail.actions';
 })
 export class DetailComponent {
   private name: string | null = null;
-  pokemon$?: Observable<DetailState>;
+  detail$?: Observable<DetailState>;
 
   constructor(
     private route: ActivatedRoute, 
     private api: PokemonService,
     private store: Store<{ detail: DetailState }>
     ) {
-    this.pokemon$ = this.store.select('detail');
+    this.detail$ = this.store.select('detail');
     this.name = this.route.snapshot.paramMap.get('name');
     this.getDetail();
   }
 
-  getPokemonAvatar(url: string): string {
-    return this.api.getPokemonAvatar(url);
+  getPokemonAvatar(id: number): string {
+    return this.api.getPokemonAvatarById(id);
   }
 
   private getDetail() {

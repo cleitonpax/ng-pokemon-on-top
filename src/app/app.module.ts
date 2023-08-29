@@ -15,6 +15,7 @@ import { listReducer } from './store/reducers/list.reducer';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
+import { DetailEvolutionComponent } from './components/detail-evolution/detail-evolution.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ListItemComponent } from './components/list-item/list-item.component';
     PaginationComponent,
     SpinnerComponent,
     ErrorMessageComponent,
-    ListItemComponent
+    ListItemComponent,
+    DetailEvolutionComponent
   ],
   imports: [
     BrowserModule,
