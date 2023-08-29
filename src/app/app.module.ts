@@ -2,14 +2,16 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { DetailComponent } from './pages/detail/detail.component';
+import { DetailEffects } from './store/effects/detail.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { ListComponent } from './pages/list/list.component';
+import { ListEffects } from './store/effects/list.effects';
 import { NgModule } from '@angular/core';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { PokemonsEffects } from './store/effects/pokemons.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { pokemonsReducer } from './store/reducers/pokemons.reducer';
+import { detailReducer } from './store/reducers/detail.reducer';
+import { listReducer } from './store/reducers/list.reducer';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,12 @@ import { pokemonsReducer } from './store/reducers/pokemons.reducer';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({ 
-      pokemons: pokemonsReducer 
+      list: listReducer,
+      detail: detailReducer
     }, {}),
     EffectsModule.forRoot([
-      PokemonsEffects
+      ListEffects,
+      DetailEffects
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25 })
   ],

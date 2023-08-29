@@ -14,7 +14,8 @@ export class PokemonService {
     return from(this.api.getPokemonByName(name));
   }
 
-  listPokemons(offset: number, limit: number): Observable<NamedAPIResourceList> {
+  listPokemons(page: number, limit: number): Observable<NamedAPIResourceList> {
+    const offset = (page - 1) * limit;
     return from(this.api.listPokemons(offset, limit));
   }
 

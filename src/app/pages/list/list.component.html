@@ -1,31 +1,33 @@
 <div class="card">
   <div class="content">
-    <ng-container *ngIf="pokemonsObservable$ | async as list; else loading">
-      <div class="list">
-        <ng-container *ngFor="let item of list.results">
-          <a [href]="'detail/' + item.name">
-            <span class="avatar">
-              <img [src]="getPokemonAvatar(item.url)" [alt]="item.name">
-            </span>
-            <span class="name">
-              {{item.name}}
-            </span>
-          </a>
-        </ng-container>
-      </div>
-      <div class="pagination">
-        <app-pagination 
-          [limit]="limit" 
-          [currentPage]="page" 
-          [total]="list.count" 
-          (pageChanged)="onPageChanged($event)">
-        </app-pagination>
-      </div>
+    <ng-container *ngIf="listObservable$ | async as list">
+      <ng-container *ngIf="list?.results; else loading">
+        <div class="list">
+          <ng-container *ngFor="let item of list.results">
+            <a [href]="'detail/' + item.name">
+              <span class="avatar">
+                <img [src]="getPokemonAvatar(item.url)" [alt]="item.name">
+              </span>
+              <span class="name">
+                {{item.name}}
+              </span>
+            </a>
+          </ng-container>
+        </div>
+        <div class="pagination">
+          <app-pagination 
+            [limit]="limit" 
+            [currentPage]="page" 
+            [total]="list.count" 
+            (pageChanged)="onPageChanged($event)">
+          </app-pagination>
+        </div>
+      </ng-container>
+      <ng-template #loading>
+        <div class="loading">
+          <i class="fa fa-spinner fa-spin"></i>
+        </div>
+      </ng-template>
     </ng-container>
-    <ng-template #loading>
-      <div class="loading">
-        <i class="fa fa-spinner fa-spin"></i>
-      </div>
-    </ng-template>
   </div>
 </div>

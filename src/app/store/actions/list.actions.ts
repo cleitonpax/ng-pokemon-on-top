@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-export const GET_LIST_ACTION = '[Pokemons] Fetch List';
-export const GET_LIST_ACTION_SUCCESS = '[Pokemons] Fetch List Success';
+export const GET_LIST_ACTION = '[List] Fetch';
+export const GET_LIST_ACTION_SUCCESS = '[List] Fetch Success';
 
 export interface GetListActionPayload {
   page: number;

@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
   { path: '', redirectTo: 'list', pathMatch: 'full' },
   { path: 'list', component: ListComponent },
-  { path: 'detail/:id', component: DetailComponent }
+  { path: 'detail/:name', component: DetailComponent }
 ];
 
 @NgModule({
