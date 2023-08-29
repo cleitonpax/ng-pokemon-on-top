@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NamedAPIResourceList } from 'pokenode-ts';
+import { ListState } from 'src/app/store/reducers/list.reducer';
 import { Observable } from 'rxjs';
-import { PokemonService } from 'src/app/services/pokemon.service';
 import { Store } from '@ngrx/store';
 import { getListAction } from 'src/app/store/actions/list.actions';
 
@@ -11,20 +10,13 @@ import { getListAction } from 'src/app/store/actions/list.actions';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  listObservable$?: Observable<NamedAPIResourceList>;
+  listObservable$?: Observable<ListState>;
   limit = 8;
   page = 1;
 
-  constructor(
-    private api: PokemonService,
-    private store: Store<{ list: NamedAPIResourceList }>
-    ) {
+  constructor(private store: Store<{ list: ListState }>) {
     this.getList();
     this.listObservable$ = this.store.select('list');
-  }
-
-  getPokemonAvatar(url: string): string {
-    return this.api.getPokemonAvatar(url);
   }
 
   onPageChanged(page: number) {

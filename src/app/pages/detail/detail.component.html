@@ -1,55 +1,58 @@
 <div class="card">
   <div class="content">
     <div class="back">
-      <button mat-button routerLink="/list">
+      <button routerLink="/list">
         <i class="fa fa-chevron-left"></i> Back to list
       </button>
     </div>
     <ng-container *ngIf="pokemon$ | async as pokemon">
-      <ng-container *ngIf="pokemon?.name; else loading">
-        <h1>{{pokemon.name}}</h1>
-        <img mat-list-avatar [src]="pokemon.sprites.other!.dream_world.front_default" [alt]="pokemon.name">
-        <p class="info">
-          Base experience <span>{{pokemon.base_experience}}</span>
-          Height <span>{{pokemon.height}}</span>
-          Weight <span>{{pokemon.weight}}</span> 
-        </p>
-  
-        <div class="stats">
-          <div class="title">Powers</div>
-          <div class="badges">
-            <ng-container *ngFor="let type of pokemon.types">
-              <div>
-                {{type.type.name}}
-              </div>
-            </ng-container>
+      <ng-container *ngIf="pokemon.loading !== true; else loading">
+        <ng-container *ngIf="pokemon.error === null; else error">
+          <h1>{{pokemon.name}}</h1>
+          <img [src]="pokemon.sprites.other!.dream_world.front_default" [alt]="pokemon.name">
+          <p class="info">
+            Base experience <span>{{pokemon.base_experience}}</span>
+            Height <span>{{pokemon.height}}</span>
+            Weight <span>{{pokemon.weight}}</span> 
+          </p>
+    
+          <div class="stats">
+            <div class="title">Powers</div>
+            <div class="badges">
+              <ng-container *ngFor="let type of pokemon.types">
+                <div>
+                  {{type.type.name}}
+                </div>
+              </ng-container>
+            </div>
           </div>
-        </div>
-        <div class="stats">
-          <div class="title">Abilities</div>
-          <div class="badges">
-            <ng-container *ngFor="let ability of pokemon.abilities">
-              <div>
-                {{ability.ability.name}}
-              </div>
-            </ng-container>
+          <div class="stats">
+            <div class="title">Abilities</div>
+            <div class="badges">
+              <ng-container *ngFor="let ability of pokemon.abilities">
+                <div>
+                  {{ability.ability.name}}
+                </div>
+              </ng-container>
+            </div>
           </div>
-        </div>
-        <div class="stats">
-          <div class="title">Stats</div>
-          <div class="badges">
-            <ng-container *ngFor="let stat of pokemon.stats">
-              <div>
-                <b>{{stat.base_stat}}</b> {{stat.stat.name}}
-              </div>
-            </ng-container>
+          <div class="stats">
+            <div class="title">Stats</div>
+            <div class="badges">
+              <ng-container *ngFor="let stat of pokemon.stats">
+                <div>
+                  <b>{{stat.base_stat}}</b> {{stat.stat.name}}
+                </div>
+              </ng-container>
+            </div>
           </div>
-        </div>
+        </ng-container>
       </ng-container>
+      <ng-template #error>
+        <app-error-message [message]="pokemon.error"></app-error-message>
+      </ng-template>
       <ng-template #loading>
-        <div class="loading">
-          <i class="fa fa-spinner fa-spin"></i>
-        </div>
+        <app-spinner></app-spinner>
       </ng-template>
     </ng-container>    
   </div>

@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
+import { DetailState } from 'src/app/store/reducers/detail.reducer';
 import { Observable } from 'rxjs';
-import { Pokemon } from 'pokenode-ts';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { Store } from '@ngrx/store';
 import { getDetailAction } from 'src/app/store/actions/detail.actions';
@@ -12,28 +12,26 @@ import { getDetailAction } from 'src/app/store/actions/detail.actions';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent {
-
-  pokemon$?: Observable<Pokemon>;
+  private name: string | null = null;
+  pokemon$?: Observable<DetailState>;
 
   constructor(
     private route: ActivatedRoute, 
     private api: PokemonService,
-    private store: Store<{ detail: Pokemon }>
+    private store: Store<{ detail: DetailState }>
     ) {
     this.pokemon$ = this.store.select('detail');
-
-    const name = this.route.snapshot.paramMap.get('name');
-
-    if (name !== null) {
-      this.getDetail(name);
-    }
-  }
-
-  private getDetail(name: string) {
-    this.store.dispatch(getDetailAction({ name }));
+    this.name = this.route.snapshot.paramMap.get('name');
+    this.getDetail();
   }
 
   getPokemonAvatar(url: string): string {
     return this.api.getPokemonAvatar(url);
+  }
+
+  private getDetail() {
+    if (this.name !== null) {
+      this.store.dispatch(getDetailAction({ name: this.name }));
+    }
   }
 }

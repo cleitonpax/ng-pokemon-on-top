@@ -1,17 +1,39 @@
 import { createReducer, on } from '@ngrx/store';
-import { getListAction, getListActionSuccess } from '../actions/list.actions';
+import { getListAction, getListActionError, getListActionSuccess } from '../actions/list.actions';
 
 import { NamedAPIResourceList } from 'pokenode-ts';
 
-export const initialState: NamedAPIResourceList = {} as NamedAPIResourceList;
+export interface ListState extends NamedAPIResourceList {
+  loading: boolean;
+  error: string | null;
+}
+
+export const initialState: ListState = {
+  loading: false,
+  error: null,
+} as ListState;
 
 export const listReducer = createReducer(
   initialState,
-  on(getListAction, (state) => state),
-  on(getListActionSuccess, (state, data: any) => {
+  on(getListAction, (state) => {
     return {
       ...state,
-      ...data.payload
-    }
+      loading: true,
+      error: null
+    };
+  }),
+  on(getListActionSuccess, (state, data: any) => {
+    return {
+      ...data.payload,
+      loading: false,
+      error: null
+    };
+  }),
+  on(getListActionError, (state, data: any) => {
+    return {
+      ...state,
+      loading: false,
+      error: data.payload.error
+    };
   }),
 );

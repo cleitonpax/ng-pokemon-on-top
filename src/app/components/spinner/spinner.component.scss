@@ -1,0 +1,14 @@
+@import 'src/styles.scss';
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  width: 100%;
+
+  .fa {
+    font-size: 48px;
+    color: $secondary-color;
+  }
+}

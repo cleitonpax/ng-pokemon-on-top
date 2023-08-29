@@ -58,16 +58,3 @@ a {
   padding: $space-xl;
   background-color: $light-color;
 }
-
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
-  width: 100%;
-
-  .fa {
-    font-size: 48px;
-    color: $secondary-color;
-  }
-}

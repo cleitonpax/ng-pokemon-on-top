@@ -1,0 +1,16 @@
+@import 'src/styles.scss';
+
+.error {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 70vh;
+  width: 100%;
+
+  .message {
+    font-size: $space-md;
+    color: $danger-color;
+    margin-bottom: $space-xl;
+  }
+}

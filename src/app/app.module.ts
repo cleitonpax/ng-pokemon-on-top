@@ -12,13 +12,19 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { detailReducer } from './store/reducers/detail.reducer';
 import { listReducer } from './store/reducers/list.reducer';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { ListItemComponent } from './components/list-item/list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     DetailComponent,
-    PaginationComponent
+    PaginationComponent,
+    SpinnerComponent,
+    ErrorMessageComponent,
+    ListItemComponent
   ],
   imports: [
     BrowserModule,

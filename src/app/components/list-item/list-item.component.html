@@ -1,0 +1,14 @@
+<ng-container *ngIf="item">
+  <a [href]="'detail/' + item.name">
+    <span class="avatar">
+      <i *ngIf="!isImgLoaded" class="fa fa-spinner fa-spin"></i>
+      <img 
+        [hidden]="!isImgLoaded" 
+        (load)="isImgLoaded = true" 
+        [src]="getPokemonAvatar(item.url)">
+    </span>
+    <span class="name">
+      {{item.name}}
+    </span>
+  </a>
+</ng-container>

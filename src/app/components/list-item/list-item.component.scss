@@ -1,0 +1,25 @@
+@import 'src/styles.scss';
+
+a {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  border-radius: $space-xs;
+
+  .avatar {
+    width: 100px;
+
+    img {
+      max-height: 40px;
+      vertical-align: middle;
+    }
+  }
+
+  .name {
+    text-transform: capitalize;
+  }
+
+  &:hover {
+    background-color: darken($light-color, 5%);
+  }
+}

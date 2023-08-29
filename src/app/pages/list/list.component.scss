@@ -7,30 +7,6 @@
   .card {
     .content {
       min-height: 70vh;
-
-      a {
-        height: 64px;
-        display: flex;
-        align-items: center;
-        border-radius: $space-xs;
-
-        .avatar {
-          width: 64px;
-
-          img {
-            max-height: 40px;
-            vertical-align: middle;
-          }
-        }
-
-        .name {
-          text-transform: capitalize;
-        }
-
-        &:hover {
-          background-color: darken($light-color, 5%);
-        }
-      }
     }
     
     .pagination {
