@@ -1,0 +1,3 @@
+<i *ngIf="!isImgLoaded && !error" class="fa fa-spinner fa-spin"></i>
+<img *ngIf="error" class="no-image" src="assets/icon.svg" alt="No image">
+<img [hidden]="!isImgLoaded || error" (load)="isImgLoaded = true" (error)="error = true" [src]="url">

@@ -20,3 +20,16 @@
 .container {
   padding: $space-lg;  
 }
+
+.footer {
+  color: darken($light-color, 30%);
+  font-size: small;
+  text-align: center;
+  margin-top: 0;
+  padding-bottom: $space-lg;
+
+  a {
+    color: darken($light-color, 30%);
+    margin-left: $space-sm;
+  }
+}

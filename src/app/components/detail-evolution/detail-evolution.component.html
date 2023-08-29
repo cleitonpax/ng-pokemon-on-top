@@ -4,17 +4,23 @@
     <ng-container *ngFor="let chain of evolutionChain; let first = first">
       <div class="arrow" *ngIf="!first">
         <i class="fa fa-arrow-right"></i>
-        <div class="level" *ngIf="chain.evolution_details[0]?.min_level">
-          Lvl {{chain.evolution_details[0].min_level}}
+        <div class="level" *ngIf="chain.evolution_details[0]?.trigger?.name as triggeredBy">
+          <app-evolution-trigger [trigger]="triggeredBy"></app-evolution-trigger>
+          <div *ngIf="chain.evolution_details[0]?.item as item">
+            <app-evolution-item [item]="item.name"></app-evolution-item>
+          </div>
+        </div>
+        <div class="level" *ngIf="chain.evolution_details[0]?.min_level as minLevel">
+          {{minLevel}}
         </div>
       </div>
       <a [href]="'detail/' + chain.species.name" class="chain" title="View Details">
-        <img [src]="getPokemonAvatar(chain.species.url)">
+        <app-avatar [url]="getPokemonAvatar(chain.species.url)"></app-avatar>
         <p>{{chain.species.name}}</p>
       </a>
     </ng-container>
   </ng-container>
   <ng-template #noEvolution>
-    <p>There is no evolution chain for this pokemon.</p>
+    <div class="no-evolution">There is no evolution chain for this pokemon.</div>
   </ng-template>
 </div>

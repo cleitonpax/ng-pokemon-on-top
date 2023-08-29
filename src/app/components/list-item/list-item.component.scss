@@ -6,13 +6,10 @@ a {
   align-items: center;
   border-radius: $space-xs;
 
-  .avatar {
+  app-avatar {
     width: 100px;
-
-    img {
-      max-height: 40px;
-      vertical-align: middle;
-    }
+    max-height: 40px;
+    vertical-align: middle;
   }
 
   .name {

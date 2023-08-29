@@ -29,7 +29,7 @@ export class DetailEvolutionComponent {
 
   private getEvolutionChainRecursive(chain: ChainLink, result: ChainLink[]) {
     result.push(chain);
-
+    
     if (chain.evolves_to.length > 0) {
       this.getEvolutionChainRecursive(chain.evolves_to[0], result);
     }

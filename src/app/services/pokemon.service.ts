@@ -1,4 +1,4 @@
-import { EvolutionChain, EvolutionClient, NamedAPIResourceList, PokemonClient, PokemonSpecies } from 'pokenode-ts';
+import { EvolutionChain, EvolutionClient, EvolutionTrigger, Item, ItemClient, NamedAPIResourceList, PokemonClient, PokemonSpecies } from 'pokenode-ts';
 import { Observable, from } from 'rxjs';
 
 import { Injectable } from '@angular/core';
@@ -9,14 +9,23 @@ import { Injectable } from '@angular/core';
 export class PokemonService {
 
   private pokemonClient = new PokemonClient();
-  private evolutionCliente = new EvolutionClient();
+  private evolutionClient = new EvolutionClient();
+  private itemClient = new ItemClient();
 
   getPokemonSpecieByName(name: string): Observable<PokemonSpecies> {
     return from(this.pokemonClient.getPokemonSpeciesByName(name));
   }
 
   getEvolutionById(id: number): Observable<EvolutionChain> {
-    return from(this.evolutionCliente.getEvolutionChainById(id));
+    return from(this.evolutionClient.getEvolutionChainById(id));
+  }
+
+  getEvolutionTriggerByName(name: string): Observable<EvolutionTrigger> {
+    return from(this.evolutionClient.getEvolutionTriggerByName(name));
+  }
+
+  getItemByName(name: string): Observable<Item> {
+    return from(this.itemClient.getItemByName(name));
   }
 
   listPokemonSpecies(page: number, limit: number): Observable<NamedAPIResourceList> {

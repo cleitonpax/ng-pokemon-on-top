@@ -5,13 +5,23 @@
   justify-content: center;
 
   .card {
-    .content {
-      min-height: 70vh;
-    }
+    width: 600px;
     
     .pagination {
       display: flex;
       justify-content: center;
+    }
+
+    app-spinner {
+      display: flex;
+      width: 600px;
+      height: 584px;
+    }
+
+    @media (max-width: $mobile) {
+      app-spinner {
+        width: $min-lg-content;
+      }
     }
   }
 }

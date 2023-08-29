@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  justify-content: center;
+
+  .fa-spinner,
+  .no-image {
+    opacity: 0.5;    
+  }
+
+  .fa-spinner {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    max-width: 280px;
+  }
+}

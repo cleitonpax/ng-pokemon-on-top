@@ -16,6 +16,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { DetailEvolutionComponent } from './components/detail-evolution/detail-evolution.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
+import { EvolutionTriggerComponent } from './components/evolution-trigger/evolution-trigger.component';
+import { EvolutionItemComponent } from './components/evolution-item/evolution-item.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { DetailEvolutionComponent } from './components/detail-evolution/detail-e
     SpinnerComponent,
     ErrorMessageComponent,
     ListItemComponent,
-    DetailEvolutionComponent
+    DetailEvolutionComponent,
+    AvatarComponent,
+    EvolutionTriggerComponent,
+    EvolutionItemComponent
   ],
   imports: [
     BrowserModule,

@@ -21,8 +21,8 @@
 
     &.active {
       button {
-        background-color: $primary-color;
-        border-color: $primary-color;
+        background-color: $secondary-color;
+        border-color: $secondary-color;
         color: $light-color;
       }
     }
@@ -51,4 +51,5 @@
   font-size: small;
   margin-top: $space-md;
   color: $secondary-color;
+  opacity: 0.5;
 }
