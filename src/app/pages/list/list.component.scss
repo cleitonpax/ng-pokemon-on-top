@@ -1,0 +1,40 @@
+.card {
+  margin: 0 auto;
+  max-width: 50%;
+  text-align: center;
+
+  .content {
+    min-height: 72vh;
+  
+    .item {
+      height: 64px;
+      
+      a {
+        cursor: pointer;
+  
+        .wrapper {
+          display: flex;
+          align-items: center;
+  
+          .avatar {
+            width: 64px;
+  
+            img {
+              max-height: 40px;
+              vertical-align: middle;
+            }
+          }
+  
+          .name {
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+}
