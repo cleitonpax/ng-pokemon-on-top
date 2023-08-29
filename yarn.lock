@@ -1338,6 +1338,27 @@
   "resolved" "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz"
   "version" "2.0.4"
 
+"@ngrx/effects@^15.0.0":
+  "integrity" "sha512-EfYmGYFF1bNLPCRPnfAZnppT47RPwpprZK6HSQQ1fvV0sA0FYKQilg93ictNhDv+0IhMBZJEbR/hBMYyi4rkBg=="
+  "resolved" "https://registry.npmjs.org/@ngrx/effects/-/effects-15.0.0.tgz"
+  "version" "15.0.0"
+  dependencies:
+    "tslib" "^2.0.0"
+
+"@ngrx/store-devtools@^15.0.0":
+  "integrity" "sha512-qvMFjPR9joQWN7Z+zhP03TCb4aCVt2l0wuJkZfhwmeaE1f4d5ms8FuOJh1lNEZg7ZyEfVP+XQ737kl59hEQMUA=="
+  "resolved" "https://registry.npmjs.org/@ngrx/store-devtools/-/store-devtools-15.0.0.tgz"
+  "version" "15.0.0"
+  dependencies:
+    "tslib" "^2.0.0"
+
+"@ngrx/store@^15.0.0", "@ngrx/store@15.0.0":
+  "integrity" "sha512-zGEK7pgL9X1M2d+tF5tJRjN9dUibfPnyAFcI0+375gBkUSU2gJxuphB0NoGPVJMtLFsW+5yI4+kjui7M6nsaYQ=="
+  "resolved" "https://registry.npmjs.org/@ngrx/store/-/store-15.0.0.tgz"
+  "version" "15.0.0"
+  dependencies:
+    "tslib" "^2.0.0"
+
 "@ngtools/webpack@15.2.9":
   "integrity" "sha512-nOXUGqKkAEMlCcrhkDwWDzcVdKNH7MNRUXfNzsFc9zdeR/5p3qt6SVMN7OOE3NREyI7P6nzARc3S+6QDBjf3Jg=="
   "resolved" "https://registry.npmjs.org/@ngtools/webpack/-/webpack-15.2.9.tgz"
@@ -5229,7 +5250,7 @@
   dependencies:
     "queue-microtask" "^1.2.2"
 
-"rxjs@^6.5.3 || ^7.4.0", "rxjs@~7.5.0":
+"rxjs@^6.5.3 || ^7.4.0", "rxjs@^6.5.3 || ^7.5.0", "rxjs@~7.5.0":
   "integrity" "sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA=="
   "resolved" "https://registry.npmjs.org/rxjs/-/rxjs-7.5.7.tgz"
   "version" "7.5.7"
@@ -5877,7 +5898,7 @@
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   "version" "1.14.1"
 
-"tslib@^2.1.0", "tslib@^2.3.0":
+"tslib@^2.0.0", "tslib@^2.1.0", "tslib@^2.3.0":
   "integrity" "sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz"
   "version" "2.6.2"

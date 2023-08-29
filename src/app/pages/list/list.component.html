@@ -1,6 +1,6 @@
 <div class="card">
   <div class="content">
-    <ng-container *ngIf="pokemonPayload$ | async as list; else loading">
+    <ng-container *ngIf="pokemonsObservable$ | async as list; else loading">
       <div class="list">
         <ng-container *ngFor="let item of list.results">
           <a [href]="'detail/' + item.name">

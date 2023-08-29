@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NamedAPIResourceList } from 'pokenode-ts';
 import { Observable } from 'rxjs';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { Store } from '@ngrx/store';
+import { getListAction } from 'src/app/store/actions/pokemons.actions';
 
 @Component({
   selector: 'app-list',
@@ -9,12 +11,16 @@ import { PokemonService } from 'src/app/services/pokemon.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  pokemonPayload$?: Observable<NamedAPIResourceList>;
+  pokemonsObservable$?: Observable<NamedAPIResourceList>;
   limit = 8;
   page = 1;
 
-  constructor(private api: PokemonService) {
-    this.fetchPokemons();
+  constructor(
+    private api: PokemonService,
+    private store: Store<{ pokemons: NamedAPIResourceList }>
+    ) {
+    this.getPokemons();
+    this.pokemonsObservable$ = this.store.select('pokemons');
   }
 
   getPokemonAvatar(url: string): string {
@@ -23,11 +29,10 @@ export class ListComponent {
 
   onPageChanged(page: number) {
     this.page = page;
-    console.log('page', page);
-    this.fetchPokemons();
+    this.getPokemons();
   }
 
-  private fetchPokemons() {
-    this.pokemonPayload$ = this.api.listPokemons(this.page, this.limit);
+  private getPokemons() {
+    this.store.dispatch(getListAction({ page: this.page, limit: this.limit }));
   }
 }
