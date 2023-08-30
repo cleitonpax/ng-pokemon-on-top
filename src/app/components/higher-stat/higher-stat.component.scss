@@ -1,0 +1,6 @@
+@import 'src/styles.scss';
+
+:host {
+  font-size: small;
+  color: darken($light-color, 50%);
+}

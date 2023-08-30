@@ -19,6 +19,7 @@ import { DetailEvolutionComponent } from './components/detail-evolution/detail-e
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { EvolutionTriggerComponent } from './components/evolution-trigger/evolution-trigger.component';
 import { EvolutionItemComponent } from './components/evolution-item/evolution-item.component';
+import { HigherStatComponent } from './components/higher-stat/higher-stat.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EvolutionItemComponent } from './components/evolution-item/evolution-it
     DetailEvolutionComponent,
     AvatarComponent,
     EvolutionTriggerComponent,
-    EvolutionItemComponent
+    EvolutionItemComponent,
+    HigherStatComponent
   ],
   imports: [
     BrowserModule,

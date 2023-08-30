@@ -1,4 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
+import { Characteristic } from 'pokenode-ts';
 import { Component } from '@angular/core';
 import { DetailState } from 'src/app/store/reducers/detail.reducer';
 import { Observable } from 'rxjs';
@@ -27,6 +28,14 @@ export class DetailComponent {
 
   getPokemonAvatar(id: number): string {
     return this.api.getPokemonAvatarById(id);
+  }
+
+  getCharacteristic(characteristic: Characteristic | null): string {
+    if (characteristic?.descriptions.length === 0) {
+      return '';
+    }
+    const en = characteristic!.descriptions.find((description) => description.language.name === 'en');
+    return en!.description;
   }
 
   private getDetail() {

@@ -9,9 +9,17 @@
             </div>
             <div class="details">
               <a routerLink="/list">
-                <i class="fa fa-chevron-left"></i> Back to list
+                <i class="fa fa-chevron-left"></i> Back to Home
               </a>
               <h1>{{detail.name}}</h1>
+              <ng-container *ngIf="detail.characteristic">
+                <p class="description">
+                  {{getCharacteristic(detail.characteristic)}}
+                </p>
+                <p class="stat" *ngIf="detail.characteristic?.highest_stat">
+                  <app-higher-stat [stat]="detail.characteristic.highest_stat.name"></app-higher-stat>
+                </p>
+              </ng-container>
             </div>
           </div>
           <app-detail-evolution [evolution]="detail.evolution"></app-detail-evolution>
