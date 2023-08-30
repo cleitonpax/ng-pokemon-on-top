@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { NamedAPIResource } from 'pokenode-ts';
-import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
   selector: 'app-list-item',
@@ -10,12 +9,4 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class ListItemComponent {
   @Input() item?: NamedAPIResource;
-
-  isImgLoaded = false;
-
-  constructor(private api: PokemonService) {}
-
-  getPokemonAvatar(url: string): string {
-    return this.api.getPokemonAvatarByUrl(url);
-  }
 }

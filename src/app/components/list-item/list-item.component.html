@@ -1,6 +1,6 @@
 <ng-container *ngIf="item">
   <a [routerLink]="'/detail/' + item.name">
-    <app-avatar [url]="getPokemonAvatar(item.url)"></app-avatar>
+    <app-avatar [name]="item.name"></app-avatar>
     <span class="name">
       {{item.name}}
     </span>

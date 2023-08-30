@@ -15,7 +15,7 @@
         </div>
       </div>
       <a [routerLink]="'/detail/' + chain.species.name" class="chain" title="View Details">
-        <app-avatar [url]="getPokemonAvatar(chain.species.url)"></app-avatar>
+        <app-avatar [name]="chain.species.name"></app-avatar>
         <p>{{chain.species.name}}</p>
       </a>
     </ng-container>

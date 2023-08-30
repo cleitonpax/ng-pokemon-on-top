@@ -60,10 +60,4 @@ describe('DetailEvolutionComponent', () => {
     ];
     expect(component.evolutionChain).toEqual(expectedChain);
   });
-
-  it('should call getPokemonAvatarByUrl with the correct URL', () => {
-    const url = 'https://pokeapi.co/api/v2/pokemon/1/';
-    component.getPokemonAvatar(url);
-    expect(pokemonService.getPokemonAvatarByUrl).toHaveBeenCalledWith(url);
-  });
 });

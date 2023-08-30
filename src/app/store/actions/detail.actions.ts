@@ -7,6 +7,7 @@ export const GET_DETAIL_ACTION_SUCCESS = '[Detail] Fetch Success';
 export const GET_CHARACTERISTIC_ACTION_SUCCESS = '[Detail] Fetch Characteristic Success';
 export const GET_EVOLUTION_ACTION_SUCCESS = '[Detail] Fetch Evolution Success';
 export const GET_DETAIL_ACTION_ERROR = '[Detail] Fetch Error';
+export const GET_CHARACTERISTIC_ACTION_ERROR = '[Detail] Fetch Characteristic Error';
 
 export interface GetDetailActionPayload {
   name: string;
@@ -28,3 +29,4 @@ export const getDetailEvolutionActionSuccess = createAction(
   props<DetailState>()
 );
 export const getDetailActionError = createAction(GET_DETAIL_ACTION_ERROR);
+export const getCharacteristicActionError = createAction(GET_CHARACTERISTIC_ACTION_ERROR);

@@ -1,3 +1,6 @@
-<i *ngIf="!isImgLoaded && !error" class="fa fa-spinner fa-spin"></i>
-<img *ngIf="error" class="no-image" src="assets/icon.svg" alt="No image">
-<img [hidden]="!isImgLoaded || error" (load)="isImgLoaded = true" (error)="error = true" [src]="url">
+<ng-container *ngIf="pokemon$ | async as pokemon; else loading">
+  <img [src]="getPokemonAvatar(pokemon)">
+</ng-container>
+<ng-template #loading>
+  <i class="fa fa-spinner fa-spin"></i>
+</ng-template>

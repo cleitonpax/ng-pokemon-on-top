@@ -97,18 +97,4 @@ describe('PokemonService', () => {
       expect(result).toEqual(namedAPIResourceList as unknown as NamedAPIResourceList);
     });
   });
-
-  it('should get pokemon avatar by url', () => {
-    const url = 'https://pokeapi.co/api/v2/pokemon/25/';
-    const avatarUrl = 'https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/25.svg';
-
-    expect(service.getPokemonAvatarByUrl(url)).toEqual(avatarUrl);
-  });
-
-  it('should get pokemon avatar by id', () => {
-    const id = 25;
-    const avatarUrl = 'https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/25.svg';
-
-    expect(service.getPokemonAvatarById(id)).toEqual(avatarUrl);
-  });
 });

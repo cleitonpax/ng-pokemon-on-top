@@ -5,7 +5,7 @@
         <ng-container *ngIf="detail.error === null; else error">
           <div class="info">
             <div class="avatar">
-              <app-avatar [url]="getPokemonAvatar(detail.id)"></app-avatar>
+              <app-avatar [name]="detail.name"></app-avatar>
             </div>
             <div class="details">
               <a routerLink="/list" class="back">

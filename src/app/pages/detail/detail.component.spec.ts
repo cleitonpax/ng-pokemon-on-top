@@ -48,11 +48,6 @@ describe('DetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getPokemonAvatar', () => {
-    const avatarUrl = component.getPokemonAvatar(1);
-    expect(avatarUrl).toBe('mock-avatar-url/1.png');
-  });
-
   it('should return characteristic description', () => {
     const characteristic = {
       descriptions: [{ language: { name: 'en', url: 'url' }, description: 'Test Description' }],

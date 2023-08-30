@@ -3,7 +3,6 @@ import { Characteristic } from 'pokenode-ts';
 import { Component } from '@angular/core';
 import { DetailState } from 'src/app/store/reducers/detail.reducer';
 import { Observable } from 'rxjs';
-import { PokemonService } from 'src/app/services/pokemon.service';
 import { Store } from '@ngrx/store';
 import { getDetailAction } from 'src/app/store/actions/detail.actions';
 
@@ -18,7 +17,6 @@ export class DetailComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private api: PokemonService,
     private store: Store<{ detail: DetailState }>
   ) {
     this.route.paramMap.subscribe(params => {
@@ -32,10 +30,6 @@ export class DetailComponent {
     if (detailState$ !== null) {
       this.detail$ = detailState$;
     }
-  }
-
-  getPokemonAvatar(id: number): string {
-    return this.api.getPokemonAvatarById(id);
   }
 
   getCharacteristic(characteristic: Characteristic | null): string {

@@ -1,6 +1,7 @@
 import { Characteristic, EvolutionChain, PokemonSpecies } from 'pokenode-ts';
 import { createReducer, on } from '@ngrx/store';
 import {
+  getCharacteristicActionError,
   getDetailAction,
   getDetailActionError,
   getDetailActionSuccess,
@@ -50,7 +51,7 @@ export const detailReducer = createReducer(
       characteristic: null,
     }
   }),
-  on(getDetailCharacteristicActionSuccess, (state, data) => {
+  on(getDetailEvolutionActionSuccess, (state, data) => {
     const { payload } = data as DetailReducerType;
     return {
       ...payload,
@@ -58,7 +59,7 @@ export const detailReducer = createReducer(
       error: null,
     }
   }),
-  on(getDetailEvolutionActionSuccess, (state, data) => {
+  on(getDetailCharacteristicActionSuccess, (state, data) => {
     const { payload } = data as DetailReducerType;
     return {
       ...payload,
@@ -73,6 +74,14 @@ export const detailReducer = createReducer(
       loading: false,
       error: payload.error,
       evolution: null,
+      characteristic: null,
+    };
+  }),
+  on(getCharacteristicActionError, (state) => {
+    return {
+      ...state,
+      loading: false,
+      error: null,
       characteristic: null,
     };
   }),

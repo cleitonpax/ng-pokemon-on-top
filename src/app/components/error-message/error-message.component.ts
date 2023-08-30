@@ -7,8 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class ErrorMessageComponent {
   @Input() message: string | null = null;
-
-  reload() {
-    window.location.reload();
-  }
 }
