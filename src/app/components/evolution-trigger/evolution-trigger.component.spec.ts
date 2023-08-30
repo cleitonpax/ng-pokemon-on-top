@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { EvolutionTrigger } from 'pokenode-ts';
 import { EvolutionTriggerComponent } from './evolution-trigger.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { of } from 'rxjs';
@@ -28,13 +29,13 @@ describe('EvolutionTriggerComponent', () => {
   });
 
   it('should get the label for the evolution trigger', () => {
-    const trigger: any = {
+    const trigger = {
       id: 1,
       names: [
         { language: { name: 'en' }, name: 'Level up' },
         { language: { name: 'fr' }, name: 'Niveau supérieur' }
       ]
-    };
+    } as unknown as EvolutionTrigger;
     pokemonService.getEvolutionTriggerByName.and.returnValue(of(trigger));
     component.trigger = 'level-up';
     fixture.detectChanges();

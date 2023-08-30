@@ -14,9 +14,9 @@ export class DetailEffects {
     ofType(GET_DETAIL_ACTION),
     mergeMap((action: GetDetailActionPayload) => this.api.getSpeciesByName(action.name)
       .pipe(
-        map((payload: PokemonSpecies) => ({
+        map((species: PokemonSpecies) => ({
           type: GET_DETAIL_ACTION_SUCCESS, payload: {
-            ...payload,
+            ...species,
             loading: true,
             error: null
           }
@@ -29,55 +29,56 @@ export class DetailEffects {
         }))
       ))
   ));
-  
+
   loadCharacterisctic$ = createEffect(() => this.actions$.pipe(
     ofType(GET_DETAIL_ACTION_SUCCESS),
-    mergeMap((action: any) => { 
+    mergeMap((action: { payload: PokemonSpecies }) => {
       const id = action.payload.evolution_chain.url.split('/').reverse()[1];
-      
-      return this.api.getCharacteristicsById(id)
-      .pipe(
-        map((payload: Characteristic) => ({
-          type: GET_CHARACTERISTIC_ACTION_SUCCESS, payload: {
-            ...action.payload,
-            characteristic: payload,
-            loading: false,
-            error: null
-          }
-        })),
-        catchError(({ message }) => of({
-          type: GET_DETAIL_ACTION_ERROR, payload: {
-            loading: false,
-            error: message
-          }
-        }))
-      )}
-      )
+
+      return this.api.getCharacteristicsById(Number(id))
+        .pipe(
+          map((characteristic: Characteristic) => ({
+            type: GET_CHARACTERISTIC_ACTION_SUCCESS, payload: {
+              ...action.payload,
+              characteristic,
+              loading: false,
+              error: null
+            }
+          })),
+          catchError(({ message }) => of({
+            type: GET_DETAIL_ACTION_ERROR, payload: {
+              loading: false,
+              error: message
+            }
+          }))
+        )
+    })
   ));
-  
+
   loadEvolution$ = createEffect(() => this.actions$.pipe(
     ofType(GET_CHARACTERISTIC_ACTION_SUCCESS),
-    mergeMap((action: any) => { 
+    mergeMap((action: { payload: PokemonSpecies }) => {
       const id = action.payload.evolution_chain.url.split('/').reverse()[1];
-      
-      return this.api.getEvolutionById(id)
-      .pipe(
-        map((payload: EvolutionChain) => ({
-          type: GET_EVOLUTION_ACTION_SUCCESS, payload: {
-            ...action.payload,
-            evolution: payload,
-            loading: false,
-            error: null
-          }
-        })),
-        catchError(({ message }) => of({
-          type: GET_DETAIL_ACTION_ERROR, payload: {
-            loading: false,
-            error: message
-          }
-        }))
-      )}
-      )
+
+      return this.api.getEvolutionById(Number(id))
+        .pipe(
+          map((evolution: EvolutionChain) => ({
+            type: GET_EVOLUTION_ACTION_SUCCESS, payload: {
+              ...action.payload,
+              evolution,
+              loading: false,
+              error: null
+            }
+          })),
+          catchError(({ message }) => of({
+            type: GET_DETAIL_ACTION_ERROR, payload: {
+              loading: false,
+              error: message
+            }
+          }))
+        )
+    }
+    )
   ));
 
   constructor(

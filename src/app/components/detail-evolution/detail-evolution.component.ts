@@ -16,8 +16,8 @@ export class DetailEvolutionComponent {
   get evolutionChain(): ChainLink[] {
     const chain: ChainLink[] = [];
 
-    if (this.evolution?.chain) {
-      this.getEvolutionChainRecursive(this.evolution!.chain, chain);
+    if (this.evolution && this.evolution.chain) {
+      this.getEvolutionChainRecursive(this.evolution.chain, chain);
     }
 
     return chain;

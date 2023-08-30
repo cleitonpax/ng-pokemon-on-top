@@ -22,7 +22,7 @@ export class EvolutionTriggerComponent implements OnInit {
 
   getLabel(trigger: EvolutionTrigger): string {
     const en = trigger.names.find(translation => translation.language.name === 'en');
-    return en!.name;
+    return en?.name || '';
   }
 
 }

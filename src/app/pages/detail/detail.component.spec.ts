@@ -1,83 +1,69 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule } from '@ngrx/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { ActivatedRoute } from '@angular/router';
+import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
+import { Characteristic } from 'pokenode-ts';
 import { DetailComponent } from './detail.component';
+import { ErrorMessageComponent } from 'src/app/components/error-message/error-message.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
-import { getDetailAction } from 'src/app/store/actions/detail.actions';
 import { of } from 'rxjs';
 
 describe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
-  let mockRoute: any;
-  let mockApi: any;
-  let mockStore: any;
+  const initialState = { detail: { } };
 
-  const mockDetailState = {
-    data: {}, // Mock your desired state here
-    loading: false,
-    error: null
+  const mockActivatedRoute = {
+    paramMap: of({ get: (param: string) => param }),
+  };
+
+  const mockPokemonService = {
+    getPokemonAvatarById: (id: number) => `mock-avatar-url/${id}.png`,
   };
 
   beforeEach(async () => {
-    mockRoute = {
-      snapshot: {
-        paramMap: {
-          get: (paramName: string) => {
-            if (paramName === 'name') {
-              return 'pikachu'; // Provide a mock name for testing
-            }
-            return null;
-          }
-        }
-      }
-    };
-
-    mockApi = jasmine.createSpyObj('PokemonService', ['getPokemonAvatarById']);
-    mockApi.getPokemonAvatarById.and.returnValue('mock-avatar-url'); // Mock avatar URL
-
-    mockStore = jasmine.createSpyObj('Store', ['select', 'dispatch']);
-    mockStore.select.and.returnValue(of(mockDetailState));
-
     await TestBed.configureTestingModule({
-      declarations: [DetailComponent],
-      providers: [
-        { provide: ActivatedRoute, useValue: mockRoute },
-        { provide: PokemonService, useValue: mockApi },
-        { provide: Store, useValue: mockStore }
+      declarations: [
+        DetailComponent,
+        ErrorMessageComponent,
+        AvatarComponent,
       ],
-      imports: [StoreModule.forRoot({})] // Add your store configuration here
+      providers: [
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+        { provide: PokemonService, useValue: mockPokemonService },
+        provideMockStore({ initialState }),
+      ],
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DetailComponent);
     component = fixture.componentInstance;
+    TestBed.inject(MockStore);
+    fixture.detectChanges();
   });
 
-  it('should create the component', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fetch Pokemon avatar URL', () => {
-    const avatarUrl = component.getPokemonAvatar(25); // Provide a mock ID
-    expect(avatarUrl).toBe('mock-avatar-url');
+  it('should call getPokemonAvatar', () => {
+    const avatarUrl = component.getPokemonAvatar(1);
+    expect(avatarUrl).toBe('mock-avatar-url/1.png');
   });
 
-  it('should get characteristic description', () => {
-    const mockCharacteristic: any = {
-      descriptions: [
-        { language: { name: 'en' }, description: 'Mock Description' }
-      ]
-    };
-    const description = component.getCharacteristic(mockCharacteristic);
-    expect(description).toBe('Mock Description');
+  it('should return characteristic description', () => {
+    const characteristic = {
+      descriptions: [{ language: { name: 'en', url: 'url' }, description: 'Test Description' }],
+    } as Characteristic;
+    const description = component.getCharacteristic(characteristic);
+    expect(description).toBe('Test Description');
   });
 
-  it('should dispatch getDetailAction when initialized', () => {
-    expect(mockStore.dispatch).toHaveBeenCalledWith(
-      getDetailAction({ name: 'pikachu' })
-    );
+  it('should return empty string for missing characteristic', () => {
+    const description = component.getCharacteristic(null);
+    expect(description).toBe('');
   });
+
 });

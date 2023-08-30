@@ -21,12 +21,17 @@ export class DetailComponent {
     private api: PokemonService,
     private store: Store<{ detail: DetailState }>
   ) {
-    this.detail$ = this.store.select('detail');
     this.route.paramMap.subscribe(params => {
       this.name = params.get('name');
       window.scrollTo(0, 0);
       this.getDetail();
     });
+
+    const detailState$ = this.store.select('detail');
+    
+    if (detailState$ !== null) {
+      this.detail$ = detailState$;
+    }
   }
 
   getPokemonAvatar(id: number): string {
@@ -34,11 +39,12 @@ export class DetailComponent {
   }
 
   getCharacteristic(characteristic: Characteristic | null): string {
-    if (characteristic?.descriptions.length === 0) {
+    if (!characteristic || characteristic.descriptions.length === 0) {
       return '';
     }
-    const en = characteristic!.descriptions.find((description) => description.language.name === 'en');
-    return en!.description;
+  
+    const en = characteristic.descriptions.find((description) => description.language.name === 'en');
+    return en?.description || '';
   }
 
   private getDetail() {

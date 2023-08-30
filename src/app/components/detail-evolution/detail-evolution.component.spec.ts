@@ -1,6 +1,6 @@
+import { ChainLink, EvolutionChain } from 'pokenode-ts';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChainLink } from 'pokenode-ts';
 import { DetailEvolutionComponent } from './detail-evolution.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
@@ -36,7 +36,7 @@ describe('DetailEvolutionComponent', () => {
   });
 
   it('should return the evolution chain', () => {
-    const evolution: any = {
+    const evolution = {
       chain: {
         species: { name: 'bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon-species/1/' },
         evolves_to: [
@@ -51,7 +51,7 @@ describe('DetailEvolutionComponent', () => {
           }
         ]
       }
-    };
+    } as unknown as EvolutionChain;
     component.evolution = evolution;
     const expectedChain: ChainLink[] = [
       evolution.chain,

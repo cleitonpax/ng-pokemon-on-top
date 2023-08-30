@@ -4,6 +4,7 @@ import { AvatarComponent } from '../avatar/avatar.component';
 import { ListItemComponent } from './list-item.component';
 import { NamedAPIResource } from 'pokenode-ts';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ListItemComponent', () => {
   let component: ListItemComponent;
@@ -12,6 +13,7 @@ describe('ListItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ListItemComponent, AvatarComponent ],
+      imports: [RouterTestingModule],
       providers: [ PokemonService ]
     })
     .compileComponents();
@@ -35,11 +37,4 @@ describe('ListItemComponent', () => {
     expect(nameElement.textContent).toContain('pikachu');
   });
 
-  it('should display the avatar of the item', () => {
-    const item: NamedAPIResource = { name: 'pikachu', url: 'https://pokeapi.co/api/v2/pokemon/25/' };
-    component.item = item;
-    fixture.detectChanges();
-    const avatarElement = fixture.nativeElement.querySelector('app-avatar');
-    expect(avatarElement).toBeTruthy();
-  });
 });

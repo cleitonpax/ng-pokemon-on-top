@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Item } from 'pokenode-ts';
 import { Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
   templateUrl: './evolution-item.component.html',
   styleUrls: ['./evolution-item.component.scss']
 })
-export class EvolutionItemComponent {
+export class EvolutionItemComponent implements OnInit {
   @Input() item!: string;
 
   labels$?: Observable<Item>;
@@ -22,6 +22,6 @@ export class EvolutionItemComponent {
 
   getLabel(trigger: Item): string {
     const en = trigger.names.find(translation => translation.language.name === 'en');
-    return en!.name;
+    return en?.name || '';
   }
 }

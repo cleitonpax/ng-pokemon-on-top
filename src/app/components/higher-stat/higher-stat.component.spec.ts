@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HigherStatComponent } from './higher-stat.component';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { Stat } from 'pokenode-ts';
 import { of } from 'rxjs';
 
 describe('HigherStatComponent', () => {
@@ -32,14 +33,14 @@ describe('HigherStatComponent', () => {
   });
 
   it('should get the label for the given stat', () => {
-    const stat: any = {
+    const stat = {
       id: 1,
       name: 'hp',
       names: [
         { language: { name: 'en' }, name: 'HP' },
         { language: { name: 'ja' }, name: 'HP' }
       ]
-    };
+    } as unknown as Stat;
     pokemonService.getStatByName.and.returnValue(of(stat));
 
     component.stat = 'hp';

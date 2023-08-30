@@ -2,7 +2,12 @@ import { createReducer, on } from '@ngrx/store';
 import { getListAction, getListActionError, getListActionSuccess } from '../actions/list.actions';
 
 import { NamedAPIResourceList } from 'pokenode-ts';
+import { TypedAction } from '@ngrx/store/src/models';
 
+export type ListReducerType = TypedAction<string> & {
+  type: string;
+  payload: ListState;
+};
 export interface ListState extends NamedAPIResourceList {
   loading: boolean;
   error: string | null;
@@ -22,18 +27,20 @@ export const listReducer = createReducer(
       error: null
     };
   }),
-  on(getListActionSuccess, (state, data: any) => {
+  on(getListActionSuccess, (state, data) => {
+    const { payload } = data as ListReducerType;
     return {
-      ...data.payload,
+      ...payload,
       loading: false,
       error: null
     };
   }),
-  on(getListActionError, (state, data: any) => {
+  on(getListActionError, (state, data) => {
+    const { payload } = data as ListReducerType;
     return {
       ...state,
       loading: false,
-      error: data.payload.error
+      error: payload.error
     };
   }),
 );

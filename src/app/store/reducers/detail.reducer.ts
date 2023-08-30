@@ -8,6 +8,13 @@ import {
   getDetailEvolutionActionSuccess
 } from '../actions/detail.actions';
 
+import { TypedAction } from '@ngrx/store/src/models';
+
+export type DetailReducerType = DetailState & TypedAction<string> & { 
+  type: string; 
+  payload: DetailState;
+}
+
 export interface DetailState extends PokemonSpecies {
   loading: boolean;
   error: string | null;
@@ -33,34 +40,38 @@ export const detailReducer = createReducer(
       characteristic: null,
     };
   }),
-  on(getDetailActionSuccess, (state, data: any) => {
+  on(getDetailActionSuccess, (state, data) => {
+    const { payload } = data as DetailReducerType;
     return {
-      ...data.payload,
+      ...payload,
       loading: true,
       error: null,
       evolution: null,
       characteristic: null,
     }
   }),
-  on(getDetailCharacteristicActionSuccess, (state, data: any) => {
+  on(getDetailCharacteristicActionSuccess, (state, data) => {
+    const { payload } = data as DetailReducerType;
     return {
-      ...data.payload,
+      ...payload,
       loading: false,
       error: null,
     }
   }),
-  on(getDetailEvolutionActionSuccess, (state, data: any) => {
+  on(getDetailEvolutionActionSuccess, (state, data) => {
+    const { payload } = data as DetailReducerType;
     return {
-      ...data.payload,
+      ...payload,
       loading: false,
       error: null,
     }
   }),
-  on(getDetailActionError, (state, data: any) => {
+  on(getDetailActionError, (state, data) => {
+    const { payload } = data as DetailReducerType;
     return {
       ...state,
       loading: false,
-      error: data.payload.error,
+      error: payload.error,
       evolution: null,
       characteristic: null,
     };
