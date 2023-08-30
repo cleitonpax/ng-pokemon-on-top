@@ -8,16 +8,33 @@ describe('ErrorMessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ErrorMessageComponent ]
-    })
-    .compileComponents();
+      declarations: [ErrorMessageComponent],
+    }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(ErrorMessageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display the error message if provided', () => {
+    component.message = 'This is an error message';
+    fixture.detectChanges();
+
+    const errorMessageElement = fixture.nativeElement.querySelector('.message');
+    expect(errorMessageElement).toBeTruthy();
+    expect(errorMessageElement.textContent).toContain('This is an error message');
+  });
+
+  it('should not display any error message if no message is provided', () => {
+    fixture.detectChanges();
+
+    const errorMessageElement = fixture.nativeElement.querySelector('.message');
+    expect(errorMessageElement).toBeFalsy();
+  });
+
 });

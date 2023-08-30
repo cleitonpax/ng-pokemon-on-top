@@ -1,7 +1,7 @@
 <div class="error">
   <h3>Sorry, something went wrong:</h3> 
-  <h2 class="message">{{message}}</h2>
-  <button (click)="reload()">
+  <h2 class="message" *ngIf="message">{{message}}</h2>
+  <button (click)="reload()" class="reload">
     <i class="fa fa-chevron-left"></i> Reload
   </button>
 </div>
