@@ -4,6 +4,10 @@ This project consumes the Pokeapi in order to display a list of pokemon species,
 
 Developed with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
 
+## Demo
+
+[Online demo](https://friendly-dollop-q796gg6gvrqc9wwr-4200.app.github.dev/list)
+
 <img src="./src/assets/screen-home.jpg" width="600"  style="margin: 20px 0" />
 
 <img src="./src/assets/screen-detail.jpg" width="600"  style="margin: 20px 0" />
