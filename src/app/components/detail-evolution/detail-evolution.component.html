@@ -14,7 +14,7 @@
           {{minLevel}}
         </div>
       </div>
-      <a [href]="'detail/' + chain.species.name" class="chain" title="View Details">
+      <a [routerLink]="'/detail/' + chain.species.name" class="chain" title="View Details">
         <app-avatar [url]="getPokemonAvatar(chain.species.url)"></app-avatar>
         <p>{{chain.species.name}}</p>
       </a>

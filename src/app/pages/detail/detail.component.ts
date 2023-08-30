@@ -17,13 +17,16 @@ export class DetailComponent {
   detail$?: Observable<DetailState>;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private api: PokemonService,
     private store: Store<{ detail: DetailState }>
-    ) {
+  ) {
     this.detail$ = this.store.select('detail');
-    this.name = this.route.snapshot.paramMap.get('name');
-    this.getDetail();
+    this.route.paramMap.subscribe(params => {
+      this.name = params.get('name');
+      window.scrollTo(0, 0);
+      this.getDetail();
+    });
   }
 
   getPokemonAvatar(id: number): string {

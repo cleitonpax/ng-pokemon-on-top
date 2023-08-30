@@ -5,7 +5,8 @@
   justify-content: center;
 
   .card {
-    width: 600px;
+    width: $min-xl-content;
+    min-height: $min-xl-content;
     
     .pagination {
       display: flex;
@@ -14,13 +15,13 @@
 
     app-spinner {
       display: flex;
-      width: 600px;
+      width: $min-xl-content;
       height: 584px;
     }
 
     @media (max-width: $mobile) {
       app-spinner {
-        width: $min-lg-content;
+        width: 308px;
       }
     }
   }

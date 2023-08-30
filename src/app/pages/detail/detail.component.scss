@@ -5,7 +5,7 @@
   justify-content: center;
 
   .card {   
-    min-width: $min-lg-content;
+    min-width: 780px;
     max-width: 80%;
     width: auto;
 
@@ -48,12 +48,18 @@
         .description, .stat {
           margin: 0 0 $space-md;
         }
+
+        .back {
+          .fa {
+            opacity: 0.5;
+          }
+        }
       }
     }
 
     app-spinner {
       display: flex;
-      width: $mobile;
+      width: 780px;
       height: $mobile;
     }
     
